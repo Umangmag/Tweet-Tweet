@@ -8,6 +8,7 @@ const tweetSchema = new mongoose.Schema({
     userEmail:{
         type: String
     },
+
    /* comments:[
         {
         content:{
@@ -17,7 +18,7 @@ const tweetSchema = new mongoose.Schema({
        }
     ] */  //METHOD 1 
 
-      // each value of comment is an object (having 1 or more key value pair) and we want multiple objects as its values so multiple objects will be there and hence array of objects
+     // each value of comment is an object (having 1 or more key value pair) and we want multiple objects as its values so multiple objects will be there and hence array of objects
 
     comments: [
         {
@@ -34,7 +35,16 @@ const tweetSchema = new mongoose.Schema({
 
 tweetSchema.virtual('contentWithEmail').get(function process(){
     return `${this.content} createdBy ${this.userEmail}`;
-})
+})  // this is vitual which does not persist in database but can be used during runtime. this is property/key of a documemt that can be used either during get or set or anything
+
+
+  tweetSchema.pre('save',function(next){
+    console.log('Inside a hook');
+    this.content= this.content + '...';
+    next();
+  })  // note if there is async and await func and no next argument then no need to call next explicitly only
+
+  // in mongoose hooks are attached with schema so here before save some operations will be done
 
 const Tweet = mongoose.model('Tweet',tweetSchema);
 module.exports= Tweet;

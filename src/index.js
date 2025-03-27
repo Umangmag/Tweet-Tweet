@@ -22,7 +22,7 @@ app.listen(3000,async()=>
         // console.log(tweet);
         
         const tweetrepo = new TweetRepository();
-         
+        const tweet = await tweetrepo.create({content: "New tweet guys"});
         
         console.log(tweet);
     });
