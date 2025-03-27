@@ -24,13 +24,17 @@ const tweetSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Comment'
         }
-    ]
+    ]   // METHOD 2
 
     // here it will store only objectid of comment schema even though you push 1 whole document of comment it will extract object id and will store
 
      
    
 }, {timestamps: true});
+
+tweetSchema.virtual('contentWithEmail').get(function process(){
+    return `${this.content} createdBy ${this.userEmail}`;
+})
 
 const Tweet = mongoose.model('Tweet',tweetSchema);
 module.exports= Tweet;
