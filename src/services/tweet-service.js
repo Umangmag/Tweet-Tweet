@@ -28,7 +28,7 @@ const {TweetRepository,HashtagRepository}= require('../repository/index')
 
         const alreadyPresentTags= this.HashtagRepository.findByName(tags);
 
-        //tomorrow continue from here you check and got already presemt tags now those which are not presemt please add
+        //tomorrow continue from here you check and got already presemt tags now those which are not present please add
 
         const tweet = await this.TweetRepository.create(data);
         // todo create hashtags and add here
