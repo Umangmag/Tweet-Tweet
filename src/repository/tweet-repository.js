@@ -20,6 +20,7 @@ class TweetRepository{
          }
     }
 
+
     // async update(id,data){
 
     //     try {
@@ -29,7 +30,9 @@ class TweetRepository{
     //      catch (error) {
     //         console.log(error);  
     //      }
-    // }
+    // } 
+
+    // currently no need to add update feature
 
 
     async destroy(id){
